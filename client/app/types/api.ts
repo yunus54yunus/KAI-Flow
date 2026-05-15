@@ -53,6 +53,10 @@ export interface WorkflowEdge {
 export interface WorkflowData {
   nodes: WorkflowNode[];
   edges: WorkflowEdge[];
+  settings?: {
+    error_workflow_id?: string | null;
+    [key: string]: unknown;
+  };
   viewport?: {
     x: number;
     y: number;
@@ -70,6 +74,7 @@ export interface Workflow {
   created_at: string;
   updated_at: string;
   is_public: boolean;
+  error_workflow?: string | null;
   is_active?: boolean;
   version?: number;
 }
@@ -79,6 +84,7 @@ export interface WorkflowCreateRequest {
   description?: string;
   flow_data: WorkflowData;
   is_public?: boolean;
+  error_workflow?: string | null;
 }
 
 export interface WorkflowUpdateRequest {
@@ -86,6 +92,7 @@ export interface WorkflowUpdateRequest {
   description?: string;
   flow_data?: WorkflowData;
   is_public?: boolean;
+  error_workflow?: string | null;
   is_active?: boolean;
 }
 
