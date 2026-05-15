@@ -610,6 +610,7 @@ function FlowCanvas({ workflowId }: FlowCanvasProps) {
     const flowData: WorkflowData = {
       nodes: nodes as WorkflowNode[],
       edges: edges as WorkflowEdge[],
+      settings: currentWorkflow?.flow_data?.settings,
     };
 
     if (!workflowName || workflowName.trim() === "") {
@@ -750,6 +751,7 @@ function FlowCanvas({ workflowId }: FlowCanvasProps) {
       const flowData: WorkflowData = {
         nodes: nodes as WorkflowNode[],
         edges: edges as WorkflowEdge[],
+        settings: currentWorkflow.flow_data?.settings,
       };
 
       await updateWorkflow(currentWorkflow.id, {
@@ -840,6 +842,13 @@ function FlowCanvas({ workflowId }: FlowCanvasProps) {
         const flowData: WorkflowData = {
           nodes: nodes as WorkflowNode[],
           edges: edges as WorkflowEdge[],
+          settings: {
+            ...(currentWorkflow.flow_data?.settings || {}),
+            error_workflow_id:
+              currentWorkflow.error_workflow ||
+              currentWorkflow.flow_data?.settings?.error_workflow_id ||
+              null,
+          },
         };
 
         // Prepare execution inputs
@@ -1296,6 +1305,7 @@ function FlowCanvas({ workflowId }: FlowCanvasProps) {
     const flowData: WorkflowData = {
       nodes: nodes as WorkflowNode[],
       edges: edges as WorkflowEdge[],
+      settings: currentWorkflow?.flow_data?.settings,
     };
 
     try {
